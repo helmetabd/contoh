@@ -1135,6 +1135,26 @@ input[type="range"]:active::-webkit-slider-thumb {
   margin-top: 0.15rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1505,6 +1525,10 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-6\/12 {
+  width: 50%;
 }
 
 .min-w-0 {
@@ -2407,6 +2431,14 @@ input[type="range"]:active::-webkit-slider-thumb {
 
 .p-\[auto\] {
   padding: auto;
+}
+
+.p-5 {
+  padding: 1.25rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .\!py-0 {
