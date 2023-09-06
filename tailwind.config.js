@@ -3,7 +3,8 @@ export default {
   content: [
     "./resources/views/**/*.blade.php",
     "./resources/views/*.blade.php",
-    "./node_modules/tw-elements/dist/js/**/*.js"
+    "./node_modules/tw-elements/dist/js/**/*.js",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},
@@ -16,7 +17,9 @@ export default {
       '2xl' : '1536px'
     },
   },
-  plugins: [require("tw-elements/dist/plugin.cjs")],
+  plugins: [
+    require("tw-elements/dist/plugin.cjs"),
+  ],
   darkMode: "class"
 }
 
