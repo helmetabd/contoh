@@ -46,4 +46,20 @@ class BlogController extends Controller
     {
         //
     }
+
+    public function login()
+    {
+        // $data = Blog::get();
+        return view('pages.auth.login', [
+            // 'data' => $data
+        ]);
+    }
+
+    public function register()
+    {
+        // $data = Blog::get();
+        return view('pages.auth.register', [
+            // 'data' => $data
+        ]);
+    }
 }

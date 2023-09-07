@@ -1,4 +1,5 @@
-<x-layouts.app title="Detail">
+@extends('layouts.app', ['title' => 'Detail'])
+@section('content')
     <!-- Container for demo purpose -->
     <a href="/" class="inline-block text-black ml-4 mb-1">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-7 h-7 my-3">
@@ -7,10 +8,13 @@
                 clip-rule="evenodd" />
         </svg>
     </a>
-    <div class="container my-24 mx-auto md:px-6">
+    <div class="container my-14 mx-auto md:px-6">
         <!-- Section: Design Block -->
         <section class="mb-32">
-            <img src={{ $blog->image }} class="mb-6 w-full rounded-lg shadow-lg dark:shadow-black/20" alt="image" />
+
+            <div class="flex content-center justify-center">
+                <img src={{ $blog->image }} class="mb-6 w-96 rounded-lg shadow-lg dark:shadow-black/20" alt="image" />
+            </div>
 
             <div class="mb-6 flex items-center">
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (23).jpg" class="mr-2 h-8 rounded-full"
@@ -32,4 +36,4 @@
         <!-- Section: Design Block -->
     </div>
     <!-- Container for demo purpose -->
-</x-layouts.app>
+@endsection

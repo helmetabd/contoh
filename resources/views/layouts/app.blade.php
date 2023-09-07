@@ -13,7 +13,7 @@
         @include('includes.navbar')
     </header>
     <main>
-        {{ $slot }}
+        @yield('content')
     </main>
     @include('includes.footer')
     @include('includes.page-js')
