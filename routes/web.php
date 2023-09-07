@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Auth::routes();
+
 Route::get('/', [BlogController::class, 'index']);
 
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.detail');
 
-Route::get('/login', [BlogController::class, 'login']);
+// Route::get('/login', [BlogController::class, 'login']);
 
-Route::get('/register', [BlogController::class, 'register']);
+// Route::get('/register', [BlogController::class, 'register']);

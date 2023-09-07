@@ -17,6 +17,7 @@
     </main>
     @include('includes.footer')
     @include('includes.page-js')
+    @include('includes.flash-message')
 </body>
 
 </html>
