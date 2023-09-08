@@ -55,6 +55,14 @@ class BlogController extends Controller
         ]);
     }
 
+    public function dashboard()
+    {
+        $data = Blog::get();
+        return view('pages.blog.dashboard', [
+            'data' => $data
+        ]);
+    }
+
     public function register()
     {
         // $data = Blog::get();

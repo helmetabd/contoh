@@ -1,10 +1,6 @@
 @extends('layouts.app', ['title' => 'Sign In'])
 @section('content')
-    <style>
-        input:focus::placeholder {
-            color: transparent;
-        }
-    </style>
+    
     <div class="flex flex-wrap justify-center content-center h-screen bg-indigo-200">
         <div class="w-full max-w-xs">
             <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="{{ route('login') }}" method="POST">
@@ -54,3 +50,14 @@
         </div>
     </div>
 @endsection
+{{-- untuk input style yang dipakai hanya dalam satu page tanpa mmengubah main style nya --}}
+@push('styles')
+<style>
+    input:focus::placeholder {
+        color: transparent;
+    }
+</style>
+@endpush
+{{-- @push('scripts')
+    
+@endpush --}}

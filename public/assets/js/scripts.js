@@ -15536,7 +15536,9 @@ __webpack_require__.r(__webpack_exports__);
 (0,tw_elements__WEBPACK_IMPORTED_MODULE_0__.initTE)({
   Ripple: tw_elements__WEBPACK_IMPORTED_MODULE_0__.Ripple,
   Collapse: tw_elements__WEBPACK_IMPORTED_MODULE_0__.Collapse,
-  Dropdown: tw_elements__WEBPACK_IMPORTED_MODULE_0__.Dropdown
+  Dropdown: tw_elements__WEBPACK_IMPORTED_MODULE_0__.Dropdown,
+  Input: tw_elements__WEBPACK_IMPORTED_MODULE_0__.Input,
+  Sidenav: tw_elements__WEBPACK_IMPORTED_MODULE_0__.Sidenav
 });
 })();
 
