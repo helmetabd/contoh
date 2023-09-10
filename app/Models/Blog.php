@@ -12,13 +12,14 @@ class Blog extends Model
     public function scopeFilter($query, array $filter)
     {
         if ($filter['search'] ?? false) {
-            $query->where('name', 'like', '%' . request('search') . '%')
-                ->orWhere('description', 'like', '%' . request('search') . '%');
+            $query->where('title', 'like', '%' . request('search') . '%');
+                // ->orWhere('description', 'like', '%' . request('search') . '%');
         }
-        // if ($filter['published'] ?? false) {
-        //     $query->where('is_publish', 'like', '%' . request('published') . '%');
+        if ($filter['status'] ?? false) {
+            $query->where('status', 'like', '%' . request('status') . '%');
+        }
         // } else {
-        //     $query->where('is_publish', 'like', '%' . request('published') . '%');
+        //     $query->where('status', 'like', '%' . request('status') . '%');
         // }
     }
 }

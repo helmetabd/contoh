@@ -8,7 +8,7 @@
     <title>{{ $title }}</title>
 </head>
 
-<body>
+<body class="flex flex-col min-h-screen justify-between">
     <header>
         @include('includes.navbar')
     </header>
@@ -18,6 +18,7 @@
     @include('includes.footer')
     @include('includes.page-js')
     @include('includes.flash-message')
+    @stack('flowbite')
 </body>
 
 </html>

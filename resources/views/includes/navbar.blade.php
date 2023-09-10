@@ -34,15 +34,13 @@
                         href="/" data-te-nav-link-ref>Home</a>
                 </li>
                 <!-- Team link -->
-                <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                    <a class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                        href="/dashboard" data-te-nav-link-ref>Dashboard</a>
-                </li>
-                <!-- Projects link -->
-                {{-- <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                    <a class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                        href="#" data-te-nav-link-ref>Projects</a>
-                </li> --}}
+
+                @if (Auth::check())
+                    <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+                        <a class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+                            href="/dashboard" data-te-nav-link-ref>Dashboard</a>
+                    </li>
+                @endif
             </ul>
         </div>
 
@@ -129,7 +127,7 @@
                     href="#" id="dropdownMenuButton2" role="button" data-te-dropdown-toggle-ref
                     aria-expanded="false">
                     <!-- User avatar -->
-                    <img src="https://tecdn.b-cdn.net/img/new/avatars/2.jpg" class="rounded-full"
+                    <img src="https://plchldr.co/i/500x250?text=user&bg=666862&bold=true&color=ffffff" class="rounded-full"
                         style="height: 25px; width: 25px" alt="" loading="lazy" />
                 </a>
                 <!-- Second dropdown menu -->
@@ -146,6 +144,11 @@
                                 href="/register" data-te-dropdown-item-ref>Sign Up</a>
                         </li>
                     @else
+                        <li>
+                            <p
+                                class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30">
+                                Hi <span>{{ Auth::user()->name }}</span></p>
+                        </li>
                         <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf

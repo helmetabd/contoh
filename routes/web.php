@@ -20,7 +20,14 @@ Route::get('/', [BlogController::class, 'index']);
 
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.detail');
 
-Route::get('/dashboard', [BlogController::class, 'dashboard']);
+Route::get('/dashboard', [BlogController::class, 'dashboard'])->middleware('auth');
+
+Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.delete');
+
+Route::get('/blogs/jajal/{id}', [BlogController::class, 'trying'])->name('blogs.trying');
+
+// Route::delete('/dashboard/{dashboard}', [BlogController::class, 'destroy']);
+
 // Route::get('/login', [BlogController::class, 'login']);
 
 // Route::get('/register', [BlogController::class, 'register']);

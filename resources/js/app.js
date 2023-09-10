@@ -5,6 +5,7 @@ import {
     Input,
     Sidenav,
     initTE,
+    Datatable
 } from "tw-elements";
 
 initTE({ 
@@ -12,5 +13,16 @@ initTE({
     Collapse, 
     Dropdown,
     Input,
-    Sidenav 
+    Sidenav,
+    Datatable 
 });
+
+import Alpine from 'alpinejs'
+
+window.Alpine = Alpine
+
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid.css'
+
+Alpine.start()
+
