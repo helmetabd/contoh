@@ -17,7 +17,16 @@
                             class="{{ Request::is('dashboard/*') || Request::is('products') || Request::is('product/*') ? 'active' : '' }}">
                             <a href="{{ url('products') }}"><i class="fa fa-code-fork"></i>&nbsp; Products</a>
                         </li> --}}
-                        <a href="#" id="create" title="create new blog"
+                        <a href="/dashboard" id="reload" title="create new blog"
+                            class="bg-green-400 text-white p-3 mr-4 rounded flex flex-row {{ Request::is('/dashboard/*') ? 'active' : '' }}">
+                            {{-- <label for="create" class="mr-1">Create</label> --}}
+                            <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 1v5h-5M2 19v-5h5m10-4a8 8 0 0 1-14.947 3.97M1 10a8 8 0 0 1 14.947-3.97" />
+                            </svg>
+                        </a>
+                        <a href="{{ route('blogs.create') }}" id="create" title="create new blog"
                             class="bg-green-400 text-white p-3 mr-4 rounded flex flex-row">
                             {{-- <label for="create" class="mr-1">Create</label> --}}
                             <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true"

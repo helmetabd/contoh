@@ -19,6 +19,7 @@
     @include('includes.page-js')
     @include('includes.flash-message')
     @stack('flowbite')
+    @stack('edit')
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Sign In'])
+@extends('layouts.app', ['title' => 'Create New Category'])
 @section('content')
     
     <div class="flex flex-wrap justify-center content-center h-screen bg-indigo-200">
@@ -7,24 +7,13 @@
                 @csrf
                 <h2 class="text-center text-gray-700 font-normal text-2xl mb-10">Sign In</h2>
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                        Email
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                        Category Name
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        name="email" id="email" type="text" placeholder="example@example.com" value="{{ old('email') }}">
-                    @error('email')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                        Password
-                    </label>
-                    <input
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        name="password" id="password" type="password" placeholder="password" value="{{ old('password') }}">
-                    @error('password')
+                        name="name" id="name" type="text" placeholder="example@example.com" value="{{ old('name') }}">
+                    @error('name')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
@@ -34,19 +23,8 @@
                         data-te-ripple-init data-te-ripple-color="light">
                         Login
                     </button>
-                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                        href="/register">
-                        Create Account?
-                    </a>
-                    {{-- <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                        href="#">
-                        Forgot Password?
-                    </a> --}}
                 </div>
             </form>
-            {{-- <p class="text-center text-gray-500 text-xs">
-                &copy;2020 Acme Corp. All rights reserved.
-            </p> --}}
         </div>
     </div>
 @endsection

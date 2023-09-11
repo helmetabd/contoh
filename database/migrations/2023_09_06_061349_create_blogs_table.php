@@ -14,17 +14,16 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->integer('author_id');
-            $table->integer('category_id')->nullable();
+            $table->integer('category_id')->unsigned()->nullable();
             $table->string('title');
             $table->string('seo_title')->nullable();
             $table->string('excerpt')->nullable();
             $table->longText('body');
             $table->string('image')->nullable();
             $table->string('slug');
-            $table->string('meta_description')->nullable();
-            $table->string('meta_keywords')->nullable();
-            $table->string('status');
-            // $table->enum('status', ['published', 'draft', 'pending']);
+            // $table->string('meta_description')->nullable();
+            // $table->string('meta_keywords')->nullable();
+            $table->enum('status', ['published', 'draft', 'pending']);
             $table->boolean('featured');
             $table->timestamps();
         });

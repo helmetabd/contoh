@@ -18,12 +18,21 @@ class BlogController extends Controller
 
     public function create()
     {
-        //
+        return view('pages.blog.create');
     }
 
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'title' => 'required',
+            'gender' => 'required|in:male,female',
+            'is_publish' => 'required|boolean',
+            'description' => 'required'
+        ]);
+
+        Blog::create($formFields);
+
+        return redirect('/')->with('message', 'Listing created successfully!');;
     }
 
     public function show(Blog $blog)
@@ -58,13 +67,6 @@ class BlogController extends Controller
     {
         $data = Blog::findOrFail($id);
         dd($data);
-        // try {
-        //     $data = Blog::findOrFail($id);
-        //     dd($data);
-        // } catch(Throwable $exception){
-        //     dd($exception);
-        // }
-        // return redirect('/dashboard')->with('message', 'Blog deleted successfully!');
     }
 
     public function login()

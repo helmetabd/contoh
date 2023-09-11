@@ -40,6 +40,10 @@
                         <a class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
                             href="/dashboard" data-te-nav-link-ref>Dashboard</a>
                     </li>
+                    <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+                        <a class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
+                            href="/categories" data-te-nav-link-ref>Category</a>
+                    </li>
                 @endif
             </ul>
         </div>
@@ -127,8 +131,8 @@
                     href="#" id="dropdownMenuButton2" role="button" data-te-dropdown-toggle-ref
                     aria-expanded="false">
                     <!-- User avatar -->
-                    <img src="https://plchldr.co/i/500x250?text=user&bg=666862&bold=true&color=ffffff" class="rounded-full"
-                        style="height: 25px; width: 25px" alt="" loading="lazy" />
+                    <img src="https://plchldr.co/i/500x250?text=user&bg=666862&bold=true&color=ffffff"
+                        class="rounded-full" style="height: 25px; width: 25px" alt="" loading="lazy" />
                 </a>
                 <!-- Second dropdown menu -->
                 <ul class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
