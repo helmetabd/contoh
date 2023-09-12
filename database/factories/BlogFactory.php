@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,8 +21,8 @@ class BlogFactory extends Factory
         $status = fake()->randomElement($array = ['published', 'draft', 'pending']);
         return [
             'title' => fake()->sentence(),
-            'author_id' => fake()->randomDigit(),
-            'category_id' => fake()->randomDigit(),
+            'author_id' => User::all()->random()->id,
+            'category_id' => Category::all()->random()->id,
             'seo_title' => fake()->sentence(),
             'excerpt' => fake()->paragraph(1),
             'body' => fake()->paragraph(10),

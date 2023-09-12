@@ -22,28 +22,40 @@ Route::get('/', [BlogController::class, 'index']);
 
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create')->middleware('auth');
 
-Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.detail');
+Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
 
-Route::get('/dashboard', [BlogController::class, 'dashboard'])->middleware('auth');
+Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
 
-Route::post('/blogs', [BlogController::class, 'store']);
-
-Route::get('/blogs/{id}/edit', [BlogController::class, 'edit']);
-
-Route::put('/blogs/{id}', [BlogController::class, 'update']);
+Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
 
 Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.delete');
 
+Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.detail');
+
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index')->middleware('auth');
+
+Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+
+Route::post('/categories/new', [CategoryController::class, 'store'])->name('categories.store');
+
+Route::get('/dashboard', [BlogController::class, 'dashboard'])->middleware('auth');
+
+Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.delete');
+
 Route::get('/blogs/jajal/{id}', [BlogController::class, 'trying'])->name('blogs.trying');
 
-Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 // Route::delete('/dashboard/{dashboard}', [BlogController::class, 'destroy']);
 
 // Route::get('/login', [BlogController::class, 'login']);
 
 // Route::get('/register', [BlogController::class, 'register']);
 
-Route::get('/get-blog-by-categories', function(){
+Route::get('/get-blog-by-categories', function($id){
     $data = Category::with('blogs')->where('name', 'LIKE', '%Sport%')->get();
     return response()->json($data, 200);
 });
+
+Route::get('/get-data-by-id', function($id){
+    $data = Category::findOrFail($id)->get();
+    return response()->json($data, 200);
+})->name('get-data-by-id');

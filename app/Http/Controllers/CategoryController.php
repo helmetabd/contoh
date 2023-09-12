@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category as Category;
+use Throwable;
 
 class CategoryController extends Controller
 {
@@ -15,8 +16,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::with('children')->whereNull('parent_id')->get();
-        return view('categories.index')->with([ 
-            'categories' => $categories 
+        return view('pages.blog.category')->with([
+            'categories' => $categories
         ]);
     }
 
@@ -28,15 +29,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $this->validate($request, [
-            'name'      => 'required|min:3|max:255|string',
-            'parent_id' => 'sometimes|nullable|numeric'
-      ]);
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|min:3|max:255|string',
+                'parent_id' => 'sometimes|nullable|numeric'
+            ]);
+            $validatedData['created_at, updated_at'] = now();
+            // dd($validatedData);
+            Category::create($validatedData);
+        } catch (Throwable $exception) {
+            dd($exception);
+        }
 
-      Category::create($validatedData);
-
-      return redirect()->route('categories.index')->withSuccess('You have successfully created a Category!');
-
+        return redirect()->route('categories.index')->withSuccess('You have successfully created a Category!');
     }
 
     /**
@@ -46,13 +51,23 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
-    {   
-        $validatedData = $this->validate($request, [
-            'name'  => 'required|min:3|max:255|string'
-        ]);
-
-        $category->update($validatedData);
+    public function update(Request $request, $id)
+    {
+        try {
+            $data = Category::findOrFail($id);
+            $validatedData = $request->validate([
+                'name' => 'required|min:3|max:255|string',
+                // 'parent_id' => 'sometimes|nullable|numeric'
+            ]);
+            // $validatedData['updated_at'] = now();
+            // dd($validatedData);
+            // dd($data);
+            // $data->save($validatedData);
+            $data->update($validatedData);
+            // Category::save($validatedData);
+        } catch (Throwable $exception) {
+            dd($exception);
+        }
 
         return redirect()->route('categories.index')->withSuccess('You have successfully updated a Category!');
     }
@@ -63,12 +78,25 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        if ($category->delete()) {
-            return redirect()->back()->with(['success' => 'Categorys successfully deleted.']);
+        $data = Category::findOrFail($id);
+        if ($data->children) {
+            foreach ($data->children()->with('blogs')->get() as $child) {
+                foreach ($child->blogs as $blog) {
+                    $blog->update(['category_id' => NULL]);
+                }
+            }
+            
+            $data->children()->delete();
+        }
+        
+        foreach ($data->blogs as $blog) {
+            $blog->update(['category_id' => NULL]);
         }
 
-        return redirect()->back()->with(['fail' => 'Unable to delete category.']);
+        $data->delete();
+
+        return redirect()->route('categories.index')->withSuccess('You have successfully deleted a Category!');
     }
 }

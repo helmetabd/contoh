@@ -16,7 +16,8 @@ class Blog extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
@@ -29,14 +30,20 @@ class Blog extends Model
     {
         if ($filter['search'] ?? false) {
             $query->where('title', 'like', '%' . request('search') . '%');
-                // ->orWhere('description', 'like', '%' . request('search') . '%');
+            // ->orWhere('description', 'like', '%' . request('search') . '%');
         }
         if ($filter['status'] ?? false) {
             $query->where('status', 'like', '%' . request('status') . '%');
         }
+
+        if ($filter['category'] ?? false) {
+            Category::with('blogs')->where('name' , 'like', '%' . request('category') . '%');
+            
+        }
+        // } elseif ($filter['category'] ?? false) {
+        //     $query->where('category', 'like', '%' . request('category') . '%');
         // } else {
-        //     $query->where('status', 'like', '%' . request('status') . '%');
+        //     $query->where('category', 'like', '%' . request('category') . '%');
         // }
     }
-
 }

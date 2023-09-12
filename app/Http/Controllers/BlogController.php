@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $data = Blog::latest()->paginate(10);
+        $data = Blog::latest()->filter(request(['status', 'category']))->paginate(10);
         return view('pages.blog.index', [
             'data' => $data
         ]);
@@ -23,28 +23,35 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-        $formFields = $request->validate([
-            'title' => 'required',
-            'gender' => 'required|in:male,female',
-            'is_publish' => 'required|boolean',
-            'description' => 'required'
-        ]);
-
-        Blog::create($formFields);
-
+        try {
+            $formFields = $request->validate([
+                'title' => 'required',
+                'gender' => 'required|in:male,female',
+                'is_publish' => 'required|boolean',
+                'description' => 'required'
+            ]);
+            Blog::create($formFields);
+        } catch (Throwable $exception) {
+            dd($exception);
+        }
         return redirect('/')->with('message', 'Listing created successfully!');;
     }
 
-    public function show(Blog $blog)
+    public function show($blog)
     {
+        $data = Blog::findOrFail($blog);
+        // dd($data);
         return view('pages.blog.details', [
-            'blog' => $blog       
+            'blog' => $data
         ]);
     }
 
-    public function edit(Blog $blog)
+    public function edit($blog)
     {
-        //
+        $data = Blog::findOrFail($blog);
+        return view('pages.blog.edit', [
+            'blog' => $data
+        ]);
     }
 
     public function update(Request $request, Blog $blog)
@@ -57,7 +64,7 @@ class BlogController extends Controller
         try {
             $data = Blog::findOrFail($id);
             $data->delete();
-        } catch(Throwable $exception){
+        } catch (Throwable $exception) {
             dd($exception);
         }
         return redirect('/dashboard')->with('message', 'Blog deleted successfully!');

@@ -122,7 +122,7 @@
                                 </div>
                             </td>
                             <td class="flex items-center justify-around px-6 py-4 space-x-3">
-                                <a href="#" class="text-blue-600 hover:underline" title="edit blog">
+                                <a href="{{ route('blogs.edit', $blog->id) }}" class="text-blue-600 hover:underline" title="edit blog">
                                     <svg class="w-6 h-6 text-blue-600 dark:text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
