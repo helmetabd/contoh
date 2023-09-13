@@ -36,7 +36,7 @@ class BlogController extends Controller
                 'status' => 'required|in:published,draft,pending',
                 'featured' => 'sometimes|boolean'
             ]);
-            // $formFields['slug'] = Str::of('title')->slug('-');
+            $formFields['slug'] = Str::of($request->title)->slug('-');
             $formFields['author_id'] = Auth::id();
             Blog::create($formFields);
         } catch (Throwable $exception) {
@@ -45,27 +45,27 @@ class BlogController extends Controller
         return redirect('/')->with('message', 'Listing created successfully!');;
     }
 
-    public function show($blog)
+    public function show($slug)
     {
-        $data = Blog::findOrFail($blog);
+        $data = Blog::where('slug', $slug)->first();
         // dd($data);
         return view('pages.blog.details', [
             'blog' => $data
         ]);
     }
 
-    public function edit($blog)
+    public function edit($slug)
     {
-        $data = Blog::findOrFail($blog);
+        $data = Blog::where('slug', $slug)->first();
         return view('pages.blog.edit', [
             'blog' => $data
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
         try {
-            $data = Blog::findOrFail($id);
+            $data = Blog::where('slug', $slug)->first();
             $formFields = $request->validate([
                 'title' => 'required|min:3|max:255',
                 'seo_title' => 'sometimes|nullable|min:3|max:255',
@@ -75,16 +75,19 @@ class BlogController extends Controller
                 'status' => 'required|in:published,draft,pending',
                 'featured' => 'sometimes|boolean'
             ]);
+            $formFields['slug'] = Str::of($request->title)->slug('-');
             $data->update($formFields);
         } catch (Throwable $exception) {
             dd($exception);
         }
+
+        return redirect()->route('blogs.detail', $data['slug'])->withSuccess('You have successfully updated a Category!');
     }
 
-    public function destroy($id)
+    public function destroy($slug)
     {
         try {
-            $data = Blog::findOrFail($id);
+            $data = Blog::where('slug', $slug)->first();
             $data->delete();
         } catch (Throwable $exception) {
             dd($exception);

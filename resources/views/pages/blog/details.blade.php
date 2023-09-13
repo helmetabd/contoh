@@ -20,7 +20,7 @@
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (23).jpg" class="mr-2 h-8 rounded-full"
                     alt="avatar" loading="lazy" />
                 <div>
-                    <span> {{ $blog->status }} <u>{{ $blog->created_at }}</u> by </span>
+                    <span> {{ $blog->status }} <u>{{ $blog->updated_at }}</u> by </span>
                     <a href="#!" class="font-medium">Anna Maria Doe</a>
                 </div>
             </div>

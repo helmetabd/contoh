@@ -25,13 +25,13 @@ Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.crea
 
 Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store');
 
-Route::get('/blogs/{id}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+Route::get('/blogs/{slug}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
 
-Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update');
+Route::put('/blogs/{slug}', [BlogController::class, 'update'])->name('blogs.update');
 
-Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.delete');
+Route::delete('/blogs/{slug}', [BlogController::class, 'destroy'])->name('blogs.delete');
 
-Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.detail');
+Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.detail');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index')->middleware('auth');
 
