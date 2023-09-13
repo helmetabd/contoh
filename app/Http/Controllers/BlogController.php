@@ -32,9 +32,9 @@ class BlogController extends Controller
                 'category_id' => 'required|numeric',
                 'excerpt' => 'sometimes|nullable|min:3',
                 'body' => 'required|min:3',
-                'image' => 'sometimes|nullable|image',
+                'image' => 'sometimes|nullable|string',
                 'status' => 'required|in:published,draft,pending',
-                'featured' => 'required|boolean'
+                'featured' => 'sometimes|boolean'
             ]);
             // $formFields['slug'] = Str::of('title')->slug('-');
             $formFields['author_id'] = Auth::id();
@@ -62,9 +62,23 @@ class BlogController extends Controller
         ]);
     }
 
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $data = Blog::findOrFail($id);
+            $formFields = $request->validate([
+                'title' => 'required|min:3|max:255',
+                'seo_title' => 'sometimes|nullable|min:3|max:255',
+                'excerpt' => 'sometimes|nullable|min:3',
+                'body' => 'required|min:3',
+                'image' => 'sometimes|nullable|string',
+                'status' => 'required|in:published,draft,pending',
+                'featured' => 'sometimes|boolean'
+            ]);
+            $data->update($formFields);
+        } catch (Throwable $exception) {
+            dd($exception);
+        }
     }
 
     public function destroy($id)

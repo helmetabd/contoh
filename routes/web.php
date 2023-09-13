@@ -61,7 +61,7 @@ Route::get('/get-data-by-id', function($id){
     return response()->json($data, 200);
 })->name('get-data-by-id');
 
-Route::get('check_slug', function () {
-    $slug = SlugService::createSlug(Blog::class, 'slug', request('title'));
-    return response()->json(['slug' => $slug]); 
-});
+// Route::get('check_slug', function () {
+//     $slug = SlugService::createSlug(Blog::class, 'slug', request('title'));
+//     return response()->json(['slug' => $slug]); 
+// });
