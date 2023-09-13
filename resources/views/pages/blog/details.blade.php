@@ -37,3 +37,7 @@
     </div>
     <!-- Container for demo purpose -->
 @endsection
+
+@push('breadcrumb')
+    {{ Breadcrumbs::render('detail', $blog) }}
+@endpush

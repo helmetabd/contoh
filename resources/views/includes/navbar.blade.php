@@ -51,30 +51,7 @@
         <!-- Right elements -->
         <div class="relative flex items-center justify-between">
 
-            <div class="flex w-full flex-wrap items-center justify-between px-3">
-                <nav class="bg-grey-light w-full rounded-md" aria-label="breadcrumb">
-                    <ol class="list-reset flex">
-                        <li>
-                            <a href="/"
-                                class="text-neutral-500 hover:text-neutral-600 dark:text-neutral-200">Home</a>
-                        </li>
-                        <li>
-                            <span class="mx-2 text-neutral-500 dark:text-neutral-200">/</span>
-                        </li>
-                        <li>
-                            <a href="blogs.detail"
-                                class="text-neutral-500 hover:text-neutral-600 dark:text-neutral-200">Details</a>
-                        </li>
-                        <li>
-                            <span class="mx-2 text-neutral-500 dark:text-neutral-200">/</span>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="text-neutral-500 hover:text-neutral-600 dark:text-neutral-200">Dashboard</a>
-                        </li>
-                    </ol>
-                </nav>
-            </div>
+            @stack('breadcrumb')
 
             {{-- <!-- Cart Icon -->
             <a class="mr-4 text-neutral-600 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"

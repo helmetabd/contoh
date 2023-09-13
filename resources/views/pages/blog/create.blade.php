@@ -7,14 +7,28 @@
                     <form method="POST" action="action.php">
                         <div class="mb-4">
                             <label class="text-xl text-gray-600">Title <span class="text-red-500">*</span></label></br>
-                            <input type="text" class="border-2 border-gray-300 p-2 w-full" name="title" id="title"
-                                value="" required>
+                            <input oninput="titleToSlug(this.value)" type="text"
+                                class="border-2 border-gray-300 p-2 w-full" name="title" id="title"
+                                value="{{ old('title') }}" placeholder="Title Here" required>
+                            @error('title')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label class="text-xl text-gray-600">Description</label></br>
-                            <input type="text" class="border-2 border-gray-300 p-2 w-full" name="description"
-                                id="description" placeholder="(Optional)">
+                            <label for="slug" class="text-xl text-gray-600">Slug <span
+                                    class="text-red-500">*</span></label></br>
+                            <input type="text" class="border-2 border-gray-300 p-2 w-full" name="slug" id="slug"
+                                required>
+                            @error('slug')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="excerpt" class="text-xl text-gray-600">Description</label></br>
+                            <input type="text" class="border-2 border-gray-300 p-2 w-full" name="excerpt" id="excerpt"
+                                placeholder="Optional">
                         </div>
 
                         <div class="mb-8">
@@ -42,5 +56,27 @@
 
     <script>
         CKEDITOR.replace('content');
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    {{-- <script>
+        $('#title').change(function(e) {
+            $.get('{{ url('check_slug') }}', {
+                    'title': $(this).val()
+                },
+                function(data) {
+                    $('#slug').val(data.slug);
+                }
+            );
+        });
+    </script> --}}
+    <script>
+        function titleToSlug(text) {
+            console.log(text);
+            let slug = Lodash.kebabCase(text);
+            document.getElementById('slug').value = slug;
+        }
     </script>
 @endsection

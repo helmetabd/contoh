@@ -19,15 +19,16 @@ class BlogFactory extends Factory
     public function definition(): array
     {
         $status = fake()->randomElement($array = ['published', 'draft', 'pending']);
+        $title = fake()->sentence();
         return [
-            'title' => fake()->sentence(),
+            'title' => $title,
             'author_id' => User::all()->random()->id,
             'category_id' => Category::all()->random()->id,
             'seo_title' => fake()->sentence(),
             'excerpt' => fake()->paragraph(1),
             'body' => fake()->paragraph(10),
             'image' => fake()->imageUrl(),
-            'slug' => fake()->realtext(100),     
+            'slug' => fake()->slug($title),     
             // 'meta_description' => fake()->realText(100),
             // 'meta_keywords' => fake()->realText(10),
             'status' => $status,

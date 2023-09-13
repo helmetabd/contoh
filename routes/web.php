@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // Auth::routes();
 
-Route::get('/', [BlogController::class, 'index']);
+Route::get('/', [BlogController::class, 'index'])->name('home');
 
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create')->middleware('auth');
 
@@ -38,7 +39,7 @@ Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('cat
 
 Route::post('/categories/new', [CategoryController::class, 'store'])->name('categories.store');
 
-Route::get('/dashboard', [BlogController::class, 'dashboard'])->middleware('auth');
+Route::get('/dashboard', [BlogController::class, 'dashboard'])->name('dashboard')->middleware('auth');
 
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.delete');
 
@@ -59,3 +60,8 @@ Route::get('/get-data-by-id', function($id){
     $data = Category::findOrFail($id)->get();
     return response()->json($data, 200);
 })->name('get-data-by-id');
+
+Route::get('check_slug', function () {
+    $slug = SlugService::createSlug(Blog::class, 'slug', request('title'));
+    return response()->json(['slug' => $slug]); 
+});

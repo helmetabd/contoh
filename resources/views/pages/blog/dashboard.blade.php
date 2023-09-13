@@ -178,3 +178,7 @@
 @push('flowbite')
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 @endpush
+
+@push('breadcrumb')
+    {{ Breadcrumbs::render('dashboard') }}
+@endpush

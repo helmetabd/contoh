@@ -25,4 +25,15 @@ class Category extends Model
     {   
         return $this->hasMany(Blog::class);
     }
+
+    public function scopeFilter($query, array $filter)
+    {
+        if ($filter['search'] ?? false) {
+            $query->where('name', 'like', '%' . request('search') . '%');
+            // ->orWhere('description', 'like', '%' . request('search') . '%');
+        }
+        if ($filter['name'] ?? false) {
+            $query->where('name', 'like', '%' . request('name') . '%');
+        }
+    }
 }

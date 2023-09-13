@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Throwable;
 
 class BlogController extends Controller
@@ -25,11 +27,17 @@ class BlogController extends Controller
     {
         try {
             $formFields = $request->validate([
-                'title' => 'required',
-                'gender' => 'required|in:male,female',
-                'is_publish' => 'required|boolean',
-                'description' => 'required'
+                'title' => 'required|min:3|max:255',
+                'seo_title' => 'sometimes|nullable|min:3|max:255',
+                'category_id' => 'required|numeric',
+                'excerpt' => 'sometimes|nullable|min:3',
+                'body' => 'required|min:3',
+                'image' => 'sometimes|nullable|image',
+                'status' => 'required|in:published,draft,pending',
+                'featured' => 'required|boolean'
             ]);
+            // $formFields['slug'] = Str::of('title')->slug('-');
+            $formFields['author_id'] = Auth::id();
             Blog::create($formFields);
         } catch (Throwable $exception) {
             dd($exception);

@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Blog extends Model
 {
     use HasFactory;
+
+    use Sluggable;
 
     protected $fillable = ['author_id', 'category_id', 'title', 'seo_title', 'excerpt', 'body', 'image', 'slug', 'status', 'featured'];
 
@@ -21,9 +24,13 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getRouteKeyName()
+    public function sluggable(): array
     {
-        return 'slug';
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     public function scopeFilter($query, array $filter)
@@ -36,10 +43,10 @@ class Blog extends Model
             $query->where('status', 'like', '%' . request('status') . '%');
         }
 
-        if ($filter['category'] ?? false) {
-            Category::with('blogs')->where('name' , 'like', '%' . request('category') . '%');
+        // if ($filter['category'] ?? false) {
+        //     Category::with('blogs')->where('name' , 'like', '%' . request('category') . '%');
             
-        }
+        // }
         // } elseif ($filter['category'] ?? false) {
         //     $query->where('category', 'like', '%' . request('category') . '%');
         // } else {

@@ -1,3 +1,4 @@
+import 'flowbite';
 import {
     Collapse,
     Dropdown,
@@ -7,6 +8,9 @@ import {
     initTE,
     Datatable
 } from "tw-elements";
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid.css'
+import lodash from "lodash";
 
 initTE({ 
     Ripple, 
@@ -20,10 +24,6 @@ initTE({
 import Alpine from 'alpinejs'
 
 window.Alpine = Alpine
-
-import './../../vendor/power-components/livewire-powergrid/dist/powergrid'
-import './../../vendor/power-components/livewire-powergrid/dist/powergrid.css'
+window.Lodash = lodash;
 
 Alpine.start()
-
-import 'flowbite';

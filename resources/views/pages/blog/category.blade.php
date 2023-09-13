@@ -202,6 +202,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 @endpush
 
+@push('breadcrumb')
+    {{ Breadcrumbs::render('category')}}
+@endpush
+
 @push('edit')
     <script>
         export default {

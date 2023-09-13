@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('excerpt')->nullable();
             $table->longText('body');
             $table->string('image')->nullable();
-            $table->string('slug');
+            $table->string('slug')->unique();
             // $table->string('meta_description')->nullable();
             // $table->string('meta_keywords')->nullable();
             $table->enum('status', ['published', 'draft', 'pending']);
