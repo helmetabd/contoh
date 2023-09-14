@@ -8,25 +8,21 @@ use Throwable;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $categories = Category::with('children')->whereNull('parent_id')->get();
-        return view('pages.blog.category')->with([
+        // return view('pages.blog.category')->with([
+        //     'categories' => $categories
+        // ]);
+        return view('pages.categories.index')->with([
             'categories' => $categories
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function create(){
+        return view('pages.categories.add-edit');
+    }
+
     public function store(Request $request)
     {
         try {
@@ -44,13 +40,13 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->withSuccess('You have successfully created a Category!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function edit($id){
+        $data = Category::findOrFail($id);
+        return view('pages.categories.add-edit', [
+            'data' => $data
+        ]);
+    }
+
     public function update(Request $request, $id)
     {
         try {
@@ -72,12 +68,6 @@ class CategoryController extends Controller
         return redirect()->route('categories.index')->withSuccess('You have successfully updated a Category!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $data = Category::findOrFail($id);

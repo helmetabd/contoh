@@ -23,20 +23,30 @@
                 </a>
             </div>
             <div class="grid grid-row-2 justify-center">
-                @if( $blog->status =  "published")
-                    <a href="/?status={{ $blog->status }}" class="mb-2 inline-block whitespace-nowrap rounded-[0.27rem] bg-success-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-success-700">
+                @if ($blog->status == 'published')
+                    <a href="/?status={{ $blog->status }}"
+                        class="mb-2 inline-block whitespace-nowrap rounded-[0.27rem] bg-success-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-success-700">
                         {{ $blog->status }}
                     </a>
-                @elseif( $blog->status  = "draft" )
-                    <a href="/?status={{ $blog->status }}" class="mb-2 inline-block whitespace-nowrap rounded-[0.27rem] bg-secondary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-secondary-800">
+                @elseif($blog->status == 'draft')
+                    <a href="/?status={{ $blog->status }}"
+                        class="mb-2 inline-block whitespace-nowrap rounded-[0.27rem] bg-secondary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-secondary-800">
+                        {{ $blog->status }}
+                    </a>
+                @elseif($blog->status == 'pending')
+                    <a href="/?status={{ $blog->status }}"
+                        class="mb-2 inline-block whitespace-nowrap rounded-[0.27rem] bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
                         {{ $blog->status }}
                     </a>
                 @else
-                    <a href="/?status={{ $blog->status }}"    class="mb-2 inline-block whitespace-nowrap rounded-[0.27rem] bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
+                    <a href="/?status={{ $blog->status }}"
+                        class="mb-2 inline-block whitespace-nowrap rounded-[0.27rem] bg-primary-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
                         {{ $blog->status }}
                     </a>
                 @endif
-                <p class="text-sm"> {{ $blog->updated_at ? $blog->updated_at->format('Y-m-d') : $blog->created_at->format('Y-m-d')}} </p>
+                <p class="text-sm">
+                    {{ $blog->updated_at ? $blog->updated_at->format('Y-m-d') : $blog->created_at->format('Y-m-d') }}
+                </p>
             </div>
         </div>
     </div>

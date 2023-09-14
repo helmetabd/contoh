@@ -12,6 +12,7 @@ class BlogController extends Controller
 {
     public function index()
     {
+        // dd('blah');
         $data = Blog::latest()->filter(request(['status', 'category']))->paginate(10);
         return view('pages.blog.index', [
             'data' => $data
@@ -109,13 +110,7 @@ class BlogController extends Controller
         ]);
     }
 
-    public function dashboard()
-    {
-        $data = Blog::latest()->filter(request(['status', 'search']))->paginate(10);
-        return view('pages.blog.dashboard', [
-            'data' => $data
-        ]);
-    }
+    
 
     public function register()
     {
