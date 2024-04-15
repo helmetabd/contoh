@@ -1,3 +1,4 @@
+{{-- @dd($breadcrumbs) --}}
 @unless ($breadcrumbs->isEmpty())
     <div class="flex w-full flex-wrap items-center justify-between px-3">
         <nav class="bg-grey-light w-full rounded-md" aria-label="breadcrumb">

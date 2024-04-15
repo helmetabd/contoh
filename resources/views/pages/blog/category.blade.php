@@ -13,7 +13,6 @@
                     </label>
                     <a href="/categories" id="reload" title="create new category"
                         class="bg-green-400 text-white p-3 mr-4 rounded flex flex-row">
-                        {{-- <label for="create" class="mr-1">Create</label> --}}
                         <svg class="w-4 h-4 text-white dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -21,24 +20,6 @@
                         </svg>
                     </a>
                 </div>
-                {{-- <form>
-                    <label for="default-search"
-                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                    <div class="relative mb-2">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                            </svg>
-                        </div>
-                        <input type="search" id="default-search" name="search"
-                            class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-transparent focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search category">
-                        <button type="submit"
-                            class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-                    </div>
-                </form> --}}
                 <thead class="text-xs text-gray-700 uppercase bg-indigo-200 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="p-4">
@@ -100,20 +81,6 @@
                                     </button>
                                 </form>
                             </td>
-                            {{-- <td class="flex items-center justify-around px-6 py-4 space-x-3">
-                                <form method="POST" action="{{ route('categorys.trying', $category->id) }}">
-                                    @csrf
-                                    @method('GET')
-                                    <button class="text-red-500">
-                                        <svg class="w-6 h-6 text-red-500 dark:text-white" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M16 1v5h-5M2 19v-5h5m10-4a8 8 0 0 1-14.947 3.97M1 10a8 8 0 0 1 14.947-3.97" />
-                                        </svg>
-                                    </button>
-                                </form>
-                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
@@ -186,16 +153,6 @@
         @endforeach
     </div>
 @endsection
-
-{{-- @push('styles')
-    @livewireStyles
-    @powerGridStyles
-@endpush
-
-@push('scripts')
-    @livewireScripts
-    @powerGridScripts
-@endpush --}}
 
 @push('flowbite')
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>

@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-
+//trying for configure web output
 Route::get('/blogs/jajal/{id}', [BlogController::class, 'trying'])->name('blogs.trying');
 
 // Route::delete('/dashboard/{dashboard}', [BlogController::class, 'destroy']);
